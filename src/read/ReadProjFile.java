@@ -23,13 +23,13 @@ public class ReadProjFile {
         projects = new LinkedList<>();
 
         while ((line = bufferedReader.readLine()) != null){
-
-            String sepField[] = line.split(separator);
+            String clearLine = line.replaceAll("\\s+","");
+            String sepField[] = clearLine.split(separator);
             project = new Project();
-            project.empId = sepField[0];
-            project.projId = sepField[1];
-            project.dateFrom = sepField[2];
-            project.dateTo = sepField[3];
+            project.setEmpId(sepField[0]);
+            project.setProjId(sepField[1]);
+            project.setDateFrom(sepField[2]);
+            project.setDateTo(sepField[3]);
             projects.add(project);
         }
     }
