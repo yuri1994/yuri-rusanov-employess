@@ -1,15 +1,18 @@
 package read;
 
+import filter.FilterProject;
 import model.Project;
 
 import java.io.*;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.logging.Filter;
 
 public class ReadProjFile {
 
     private String path;
     private String separator;
-    private LinkedList<Project> projects;
+    private List<Project> projects;
 
     public ReadProjFile(){
 
@@ -30,6 +33,7 @@ public class ReadProjFile {
             project.setProjId(sepField[1]);
             project.setDateFrom(sepField[2]);
             project.setDateTo(sepField[3]);
+            project.setDays();
             projects.add(project);
         }
     }
@@ -42,7 +46,7 @@ public class ReadProjFile {
         this.separator = separator;
     }
 
-    public LinkedList<Project> getProjects() {
+    public List<Project> getProjects() {
         return projects;
     }
 }

@@ -1,10 +1,11 @@
 package main;
 
+import filter.FilterProject;
 import model.Project;
+import model.TeamProject;
 import read.ReadProjFile;
 
 import java.io.IOException;
-import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -23,14 +24,10 @@ public class Main {
             e.printStackTrace();
         }
 
-        LinkedList<Project>  projects = new LinkedList<>();
-        projects = readProjFile.getProjects();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        for (Project project : projects){
-            long diff = project.getDateTo().getTime() - project.getDateFrom().getTime();
-            int days = (int) TimeUnit.MILLISECONDS.toDays(diff);
-            System.out.println(project.getProjId()+ " / " + project.getEmpId()+ " / "  + days);
-        }
+        FilterProject filterProject = new FilterProject(readProjFile.getProjects());
+        TeamProject teamProject = filterProject.getTeamProject();
+        System.out.println(" Employee ID #1: " + teamProject.getEmpl1() + " Employee ID #2: " + teamProject.getEmpl2() + " Project ID: " +
+                teamProject.getProject() + " Days worked: "+ teamProject.getDaysOnTeam());
 
     }
 
