@@ -1,14 +1,10 @@
 package main;
 
 import filter.FilterProject;
-import model.Project;
 import model.TeamProject;
 import read.ReadProjFile;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 public class Main {
 
@@ -30,5 +26,4 @@ public class Main {
                 teamProject.getProject() + " Days worked: "+ teamProject.getDaysOnTeam());
 
     }
-
 }
