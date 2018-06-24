@@ -1,21 +1,29 @@
 package date;
 
+/*
+  Created by y.rusanov on 24.06.2018
+ */
+
 import java.util.*;
 
 public class DateFormat {
 
-    private String dateStr;
-    private Date date;
-    private String[] dateFields;
+    private String dateStr;     //date in String type
+    private Date date;  //date in Date type
+    private String[] dateFields; //array with fields year, month and day.
 
-    private String[] monthsShort = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
-    private String[] monthsLong = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+    private String[] monthsShort = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"}; //Array with months name present in short version
+    private String[] monthsLong = {"January","February","March","April","May","June","July","August","September","October","November","December"}; //Array with months name present in short version
 
     public DateFormat(String dateStr){
         this.dateStr = dateStr;
         this.process();
     }
 
+    /*
+     * Process method set date in type Date from string where coming from file.
+     *
+     */
     private void process(){
         Calendar calendar = Calendar.getInstance();
         String separator = this.getDateSep();
@@ -26,8 +34,7 @@ public class DateFormat {
             int month = 0;
             if(this.monthType() == 0){
                 month = this.getMonth();
-            }
-            else {
+            } else {
                 month = this.getMonthByTxt();
             }
 
@@ -38,6 +45,10 @@ public class DateFormat {
 
     }
 
+    /*
+     * removeElement method remove element from array. The array contain year, month and day.
+     * @param index index of date fields array
+     */
     private String[] removeElement(int index){
 
         List<String> stringList = new ArrayList<String>(Arrays.asList(dateFields));
@@ -47,6 +58,10 @@ public class DateFormat {
         return stringList.toArray(new String[0]);
     }
 
+    /*
+     * getYear method is for to recognize and get year from array with year, month and day. After recognizing of year, the element is deleted from array.
+     * @return year in type int
+     */
     private int getYear(){
 
         int year = 0;
@@ -64,6 +79,10 @@ public class DateFormat {
         return year;
     }
 
+    /*
+     * getMonth method is for to recognize and get month from array with year, month and day. After recognizing of month, the element is deleted from array.
+     * @return month in type int
+     */
     private int getMonth(){
 
         int month = 0;
@@ -82,6 +101,10 @@ public class DateFormat {
         return month;
     }
 
+    /*
+     * getDay method is for to recognize and get day from array with year, month and day. After recognizing of day, the element is deleted from array.
+     * @return day in type int
+     */
     private int getDay(){
 
         int day = 0;
@@ -100,10 +123,18 @@ public class DateFormat {
         return day;
     }
 
+    /*
+     * getDate is for return the final date after separating
+     * @return the final date in type Date
+     */
     public Date getDate(){
         return date;
     }
 
+    /*
+     * getDateSep method is for recognize the separator in date where coming from file.
+     * @return separator in type String
+     */
     private String getDateSep(){
         char separator;
 
@@ -116,6 +147,11 @@ public class DateFormat {
         return null;
     }
 
+    /*
+     * monthType method recognize the type of month. The Month can be present in text or in number.
+     * @return the type of month in type int.
+     * type 0: the month is in Number, type 1: the month is in Text
+     */
     private int monthType(){
 
         for(String field : dateFields){
@@ -129,6 +165,10 @@ public class DateFormat {
         return 0;
     }
 
+    /*
+     * getMonthByTxt method recognize the month in text which number is.
+     * @return the number of month in int type.
+     */
     private int getMonthByTxt(){
 
         for(int i = 0; i < dateFields.length; i++){

@@ -1,23 +1,24 @@
 package read;
 
-import filter.FilterProject;
-import model.Project;
+/*
+  Created by y.rusanov on 22.06.2018
+ */
 
+import model.Project;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Filter;
 
 public class ReadProjFile {
 
-    private String path;
-    private String separator;
-    private List<Project> projects;
+    private String path; //path in type String
+    private String separator; //separator in type String
+    private List<Project> projects; //projects in type List<T>
 
-    public ReadProjFile(){
-
-    }
-
+    /*
+     * method process read the text file and separate each line in object Project
+     * in the end of line add object Project to list collection
+     */
     public void process() throws IOException {
         Project project;
         FileReader fileReader = new FileReader(path);
@@ -38,14 +39,23 @@ public class ReadProjFile {
         }
     }
 
+    /*
+     * @param path path to set the file path
+     */
     public void setPath(String path) {
         this.path = path;
     }
 
+    /*
+     * @param separator separator to set the separator on line
+     */
     public void setSeparator(String separator) {
         this.separator = separator;
     }
 
+    /*
+     * @return current list collection of Projects
+     */
     public List<Project> getProjects() {
         return projects;
     }

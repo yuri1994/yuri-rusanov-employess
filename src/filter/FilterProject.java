@@ -1,22 +1,29 @@
 package filter;
 
+/*
+  Created by y.rusanov on 23.06.2018
+ */
+
 import model.Project;
 import model.TeamProject;
-
-import java.io.FileReader;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 public class FilterProject {
 
-    private List<Project> projects;
-    private TeamProject teamProject;
+    private List<Project> projects; //Collection List contain Project objects
+    private TeamProject teamProject; //Object TeamProject
+
     public FilterProject(List<Project> projectList){
         this.projects = projectList;
         this.process();
     }
 
+    /*
+     * Process method get collection List and remove all Projects where working on them only one employee.
+     * After this procedure the collection has sorted in descending order by field Days.
+     */
     private void process(){
 
         int countProjects = 0;
@@ -38,6 +45,9 @@ public class FilterProject {
         teamProject = new TeamProject(projects.get(0), projects.get(1));
     }
 
+    /*
+     * @return object TeamProject, were contain the longest team worked on project
+     */
     public TeamProject getTeamProject() {
         return teamProject;
     }

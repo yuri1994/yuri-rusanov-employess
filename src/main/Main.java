@@ -1,9 +1,12 @@
 package main;
 
+/*
+  Created by y.rusanov on 22.06.2018
+ */
+
 import filter.FilterProject;
 import model.TeamProject;
 import read.ReadProjFile;
-
 import java.io.IOException;
 
 public class Main {
