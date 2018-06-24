@@ -5,6 +5,8 @@ package read;
  */
 
 import model.Project;
+import model.TeamProject;
+
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,14 +16,19 @@ public class ReadProjFile {
     private String path; //path in type String
     private String separator; //separator in type String
     private List<Project> projects; //projects in type List<T>
-
+    private File file;
     /*
      * method process read the text file and separate each line in object Project
      * in the end of line add object Project to list collection
      */
     public void process() throws IOException {
         Project project;
-        FileReader fileReader = new FileReader(path);
+        FileReader fileReader;
+        if(path == null){
+            fileReader = new FileReader(file);
+        } else {
+            fileReader = new FileReader(path);
+        }
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String line;
         projects = new LinkedList<>();
@@ -51,6 +58,10 @@ public class ReadProjFile {
      */
     public void setSeparator(String separator) {
         this.separator = separator;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
     }
 
     /*
