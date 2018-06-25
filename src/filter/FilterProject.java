@@ -6,6 +6,8 @@ package filter;
 
 import model.Project;
 import model.TeamProject;
+
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -42,7 +44,20 @@ public class FilterProject {
             countProjects = 0;
         }
         Collections.sort(projects);
-        teamProject = new TeamProject(projects.get(0), projects.get(1));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        for(Project project : projects){
+            System.out.println(project.getDays() + " / " + project.getEmpId() + " / " + project.getProjId() + " / " + simpleDateFormat.format(project.getDateFrom()) + " / " + simpleDateFormat.format(project.getDateTo()));
+        }
+
+        //fix get couple team worked on project longest period
+        for(int i = 0; i < projects.size(); i++){
+            if(projects.get(i).getProjId().equals(projects.get(i+1).getProjId())){
+                teamProject = new TeamProject(projects.get(i), projects.get(i+1));
+                break;
+            }
+        }
+
+        //teamProject = new TeamProject(projects.get(0), projects.get(1));
     }
 
     /*
