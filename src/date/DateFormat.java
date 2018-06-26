@@ -20,6 +20,8 @@ public class DateFormat {
         this.process();
     }
 
+    private boolean positionYearLast = false;
+
     /*
      * Process method set date in type Date from string where coming from file.
      *
@@ -71,6 +73,9 @@ public class DateFormat {
                 if(!Character.isAlphabetic(dateFields[i].charAt(0))){
                     year = Integer.valueOf(dateFields[i]);
                     dateFields = this.removeElement(i);
+                    if(i == 2){
+                        positionYearLast = true;
+                    }
                     break;
                 }
             }
@@ -87,7 +92,29 @@ public class DateFormat {
 
         int month = 0;
 
-        for (int i = 0; i < dateFields.length; i++) {
+        if(positionYearLast){
+            int num = Integer.valueOf(dateFields[1]);
+            if(num >= 1 && num <= 12) {
+                month = Integer.valueOf(dateFields[1]);
+                dateFields = this.removeElement(1);
+            }else {
+                month = Integer.valueOf(dateFields[0]);
+                dateFields = this.removeElement(0);
+            }
+        } else {
+            int num = Integer.valueOf(dateFields[0]);
+            if(num >= 1 && num <= 12) {
+                month = Integer.valueOf(dateFields[0]);
+                dateFields = this.removeElement(0);
+            }else {
+                month = Integer.valueOf(dateFields[1]);
+                dateFields = this.removeElement(1);
+            }
+        }
+
+
+/*
+      for (int i = 0; i < dateFields.length; i++) {
             if (dateFields[i].length() == 2) {
                 int num = Integer.valueOf(dateFields[i]);
                 if(num >= 1 && num <= 12){
@@ -97,6 +124,8 @@ public class DateFormat {
                 }
             }
         }
+
+ */
 
         return month;
     }
